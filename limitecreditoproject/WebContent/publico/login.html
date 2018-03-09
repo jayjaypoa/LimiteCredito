@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script type="text/javascript" src="../resources/js/jquery-3.1.1.slim.min.js"></script>
+<script type="text/javascript" src="../resources/js/bootstrap.min.js"></script>
+<link href="../resources/css/bootstrap.min.css" rel="stylesheet">
+<title>Login - Portal de Limite de Crédito</title>
+</head>
+<body>
+
+	<font face="Arial">
+		<div align="center" style="padding-top: 100px;">
+		
+			<form method="post" name="frmLogin" id="idFrmLogin" 
+				  action="/limitecredito/j_spring_security_check">
+	
+				<h2>Portal de Limite de Crédito</h2>				
+				<table border="0" style="margin-top: 15px;">
+					<tr>
+						<td style="padding: 15px;">
+							<h4>Usuário:&nbsp;</h4>
+						</td>
+						<td style="padding: 15px;">
+							<input type="text" name="j_username" id="j_username" value="admin" />
+						</td>
+					</tr>
+					<tr>
+						<td style="padding: 15px;">
+							<h4>Senha:&nbsp;</h4>
+						</td>
+						<td style="padding: 15px;">
+							<input type="password" name="j_password" id="j_password" value="admin" />
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2">
+							<center>
+								<button type="submit" class="btn btn-primary" id="idButtonLogin">
+									Acessar Sistema
+								</button>
+							</center>
+						</td>
+					</tr>
+				</table>				
+				
+			</form>
+		</div>
+	</font>
+
+</body>
+</html>

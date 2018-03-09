@@ -1,0 +1,71 @@
+<html ng-app="credito">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+<h3>Lista de Clientes Cadastrados</h3>
+<br/>
+
+<div ng-controller="clienteController" ng-init="listarClientes(1)">
+
+	<div class="content table-responsive table-full-width" style="width:100%;">
+		<table class="table table-hover">
+			<thead>
+				<th nowrap># ID</th>				
+				<th nowrap>Nome do Cliente</th>
+				<th nowrap><center>Limite<br />de Crédito</center></th>
+				<th nowrap>Risco</th>
+				<th nowrap><center>Taxa<br />de Juros</center></th>
+				<th colspan="2" nowrap><center>Ações</center></th>
+			</thead>
+			<tbody>
+				<tr ng-repeat="cliente in data | filter:filtro"> 
+					<td style="text-align: center;">
+						{{cliente.id}}
+					</td>
+					<td width="50%" nowrap>
+						{{cliente.nome | uppercase}}
+					</td>
+					<td style="text-align: center;">
+						R$&nbsp;{{cliente.limite | number:2}}
+					</td>
+					<td style="text-align: center;">											
+						<div ng-show="cliente.risco == 'A'">
+							<span class="badge badge-default">
+								RISCO&nbsp;{{cliente.risco | uppercase}}
+							</span>
+						</div>
+						<div ng-show="cliente.risco == 'B'">
+							<span class="badge badge-warning">
+								RISCO&nbsp;{{cliente.risco | uppercase}}
+							</span>
+						</div>
+						<div ng-show="cliente.risco == 'C'">
+							<span class="badge badge-danger">
+								RISCO&nbsp;{{cliente.risco | uppercase}}
+							</span>
+						</div>
+					</td>
+					<td style="text-align: center;">
+						{{cliente.taxa | number:0}}&nbsp;%
+					</td>
+					<td> 
+						
+						<button type="button" ng-click="removerCliente(cliente.id);" 
+								class="btn btn-danger btn-fill btn-wd" style="display: inline-block !important;" >Excluir</button>
+					</td>
+					<td>								
+						<button type="button" ng-click="editarCliente(cliente.id);" 
+								class="btn btn-info btn-fill btn-wd" style="display: inline-block !important;">Editar</button>						
+						
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<div class="text-center">
+		   <button type="button" class="btn btn-primary btn-fill btn-wd" ng-click="anterior();">Anterior</button>
+		   <button type="button" class="btn btn-primary btn-fill btn-wd" ng-click="proximo();">Próximo</button>
+		</div>   
+	</div>
+
+</div>
+</html>

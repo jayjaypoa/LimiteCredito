@@ -1,0 +1,99 @@
+<html ng-app>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<script type="text/javascript" src="resources/js/jquery-1.10.2.js"></script>
+<script language="JavaScript">
+	function validacao(){
+		
+		// valida preenchimento da TAXA
+		var elemTaxa = document.getElementById("idCampoTaxa").value;
+		if (elemTaxa == ""){
+			return false; // aborta o processamento
+		}
+		
+		// valida preenchimento do RISCO
+		var elemRisco = document.getElementById("idCampoRisco").selectedIndex;
+		if (elemRisco > 0){
+			return false; // aborta o processamento
+		}
+				
+		// continua com o processamento
+		return true;
+	}
+</script>
+</head>
+<h3>Cadastrar Novo Cliente</h3>
+<br />
+
+<div class="col-lg-10 col-md-8">
+	<div class="card">
+		<div class="content">
+		
+			<form id="formCliente" onsubmit="validacao();" ng-submit="salvarCliente();">
+			
+				<div class="row">
+				
+					<div class="col-sm-2">
+						<div class="form-group">
+							<label>Id</label> 
+							<input type="text" ng-model="cliente.id" class="form-control border-input" disabled />
+						</div>
+					</div>
+
+					<div class="col-md-7">
+						<div class="form-group">
+							<label>Nome do Cliente</label> 
+							<input type="text" ng-model="cliente.nome" ng-change="cliente.nome = cliente.nome.toUpperCase();" 
+								   class="form-control border-input" placeholder="Nome" required="required">
+						</div>
+					</div>								
+					
+				</div>
+
+				<div class="row">
+				
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label for="limite">Limite de Crédito (R$)</label> 
+							<input type="number" name="campolimite" id="campolimite" 
+								   ng-model="cliente.limite" class="form-control border-input"		
+								   value="{{cliente.limite}}"		    
+								   placeholder="Limite" required="required" min="0" step="any">
+						</div>
+					</div>
+									
+					<div class="col-md-3">
+						<div class="form-group">
+							<label>Risco</label>
+							<select ng-model="cliente.risco" ng-change="update()"
+							        ng-init="cliente.risco = 'A'" 
+									name="campoRisco" id="idCampoRisco"
+									class="form-control" required>
+								<option ng-repeat="elem in listaRisco" value="{{elem}}">
+									Risco {{elem}}
+								</option>
+							</select>					
+						</div>
+					</div>
+					
+					<div class="col-md-3">
+						<div class="form-group">
+							<label for="taxa">Taxa (%)</label> 
+							<input type="text" name="campoTaxa" id="idCampoTaxa"
+								   class="form-control border-input" 
+								   ng-model="cliente.taxa" ng-init="cliente.taxa = 0"
+								   value="{{cliente.risco}}" placeholder="Taxa" 
+								   required="required" readonly="readonly">
+						</div>
+					</div>
+										
+				</div>				
+				
+				<button type="submit" class="btn btn-success">Cadastrar</button>
+				<button type="submit" class="btn btn-info" ng-click="$scope.cliente={}">Limpar</button>
+				
+			</form>
+		</div>
+	</div>
+	
+</html>
